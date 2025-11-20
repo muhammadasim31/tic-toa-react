@@ -1,16 +1,15 @@
-const initialBoardGame = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null],
-
-];
+import { useState } from "react";
 
 
-export default function GameBoard() {
+
+
+export default function GameBoard({ onselectsquare, board }) {
+
+
     return <ol id="game-board">
-        {initialBoardGame.map((row, rowindex) => <li key={rowindex}>
+        {board.map((row, rowindex) => <li key={rowindex}>
             <ol>
-                {row.map((playersymbol, colindex) => <li key={colindex}><button>{playersymbol}</button></li>)}
+                {row.map((playersymbol, colindex) => <li key={colindex}><button onClick={() => onselectsquare(rowindex, colindex)} disabled={playersymbol !== null}>{playersymbol}</button></li>)}
             </ol>
         </li>)}
 
